@@ -1,0 +1,69 @@
+{
+    "extensions.ignoreRecommendations": false,
+    "files.associations": {
+        "*.vue": "vue",
+        "*.wxml": "html",
+        "*.wxss": "css"
+    },
+    "[scss]": {},
+    "git.autofetch": true,
+    "editor.fontSize": 16, //以像素为单位控制字号
+    "git.enableSmartCommit": true, //在没有暂存的更改时提交所有更改
+    "explorer.confirmDelete": true, //控制资源管理器是否应在删除文件到废纸篓时进行确认
+    "editor.wordWrap": "on", //控制折行方式  off-禁用折行  on-根据视区宽度折行
+    //控制在资源管理器内拖放移动文件或文件夹时是否进行确认
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 0, //调整窗口的缩放级别。原始大小是 0
+    "git.confirmSync": false,
+    //保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器
+    // "gitlens.historyExplorer.enabled": true, 
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            // "wrap_attributes": "force-expand-multiline" //强制展开多行
+            // "wrap_attributes": "force-aligned"
+            "wrap_attributes": "auto"
+        },
+        "prettyhtml": {
+            "printWidth": 100,
+            "singleQuote": true,
+            "wrapAttributes": false,
+            "sortAttributes": true,
+        },
+        "prettier": {
+            "semi": false, // 去掉自动分号
+        }
+    },
+    "beautify.config": {
+        "brace_style": "collapse,preserve-inline" //解决花括号中换行
+    },
+    "vetur.format.defaultFormatter.js": "vscode-typescript", //格式化js代码
+    "vetur.format.defaultFormatter.html": "js-beautify-html", //格式化html代码
+    "editor.formatOnSave": true,
+    "vetur.format.options.tabSize": 2,
+    // "vetur.format.options.useTabs": true, //是否在每一行的末尾添加分号
+    "editor.tabSize": 2,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    "eslint.autoFixOnSave": true,
+    "editor.minimap.enabled": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontLigatures": true,
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}
