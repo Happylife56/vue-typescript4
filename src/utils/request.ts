@@ -3,7 +3,7 @@
  * @file axios请求封装
  */
 import axios from 'axios'
-import { AppModule } from '@/store/modules/app'
+import store from '@/store'
 import { Message } from 'element-ui'
 // 响应时间
 axios.defaults.timeout = 10000
@@ -19,9 +19,9 @@ axios.defaults.headers = {
 axios.interceptors.request.use(
   (config) => {
     // 获取token
-    if (AppModule.token) {
+    if (store.state.app.token) {
       // 判断是否存在token，如果存在的话，则每个http header都加上token
-      config.headers.Authorization = AppModule.token
+      config.headers.Authorization = store.state.app.token
     }
     return config
   },
@@ -34,16 +34,16 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     // 设置token不过期
-    AppModule.SET_TOKEN_STATE(false)
+    store.commit('app/SET_TOKEN_STATE', false)
     if (typeof response !== 'undefined' && (response.data.code == 1001 || response.data.code == 0)) {
       return response.data
     } else if (typeof response !== 'undefined' && response.data.code == 20001) {
-      AppModule.SET_TOKEN_STATE(false) // 设置token过期
+      store.commit('app/SET_TOKEN_STATE', true) // 设置token过期
     } else if (typeof response !== 'undefined' && response.data.code == 20008) {
-      AppModule.SET_QUIT_SHIFT(true) // 设置当前账号已交班
+      store.commit('app/SET_QUIT_SHIFT', true) // 设置当前账号已交班
       // Message.error(response.data.msg)
     } else if (typeof response !== 'undefined' && response.data.msg) {
-      AppModule.SET_QUIT_SHIFT(false)
+      store.commit('app/SET_QUIT_SHIFT', false)
       if (response.data.code !== 1006) checkCode(response.data.msg)
       return response.data
     } else {

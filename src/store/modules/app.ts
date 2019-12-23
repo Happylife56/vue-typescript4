@@ -1,5 +1,4 @@
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
-import store from '@/store'
 
 /**
  * @param {opened} 侧边栏是否开启
@@ -17,8 +16,8 @@ export interface IAppState {
   quitShift: boolean
 }
 
-@Module({ dynamic: true, store, name: 'app', namespaced: true })
-class App extends VuexModule implements IAppState {
+@Module({ name: 'app', namespaced: true })
+export default class AppModule extends VuexModule implements IAppState {
   public opened: boolean = true
   public appType = 'admin'
   public token = ''
@@ -50,6 +49,3 @@ class App extends VuexModule implements IAppState {
   }
 }
 
-
-
-export const AppModule = getModule(App)

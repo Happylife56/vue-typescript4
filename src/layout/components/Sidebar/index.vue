@@ -39,14 +39,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
+import { State } from 'vuex-class'
 
 @Component({
   name: 'SideBar'
 })
 export default class extends Vue {
+  @State('opened', { namespace: 'app' }) opened: any
   get isCollapse() {
-    return AppModule.opened
+    return this.opened
   }
 }
 </script>

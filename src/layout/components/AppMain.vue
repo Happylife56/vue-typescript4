@@ -17,20 +17,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/store/modules/app'
-import { UserModule } from '@/store/modules/user'
+import { State, Getter, Action, Mutation } from 'vuex-class'
 
 @Component({
   name: 'AppMain'
 })
 export default class extends Vue {
-  get appType() {
-    return AppModule.appType
-  }
+  @State('appType', { namespace: 'app' }) appType: any
+  @Mutation('TEST', { namespace: 'user' }) TEST: any
   mounted() {
     this.$nextTick(() => {})
-    UserModule.setTest()
-    // console.log(UserModule)
+    this.TEST('2656565689')
+    console.log(this.appType)
   }
 }
 </script>

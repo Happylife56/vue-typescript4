@@ -1,12 +1,11 @@
 import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators'
-import store from '@/store'
 
 export interface IUserState {
   usrName: string
 }
 
-@Module({ dynamic: true, store, name: 'user', namespaced: true })
-class User extends VuexModule implements IUserState {
+@Module({ name: 'user', namespaced: true })
+export default class UserModule extends VuexModule implements IUserState {
   usrName = 'test'
 
   @Mutation
@@ -21,4 +20,3 @@ class User extends VuexModule implements IUserState {
 
 }
 
-export const UserModule = getModule(User)
