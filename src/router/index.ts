@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import layout from '@/layout/index.vue'
 
-import collectRoutes from './modules/collect'
+// 导入modules
+const requireModule = require.context('./modules', true, /\.ts$/)
+const routerModule = requireModule.keys().map(key => requireModule(key).default)
 
 Vue.use(VueRouter)
 
@@ -17,7 +19,7 @@ const routes: RouteConfig[] = [
         name: 'about',
         component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
       },
-      collectRoutes
+      ...routerModule
     ]
   },
   {

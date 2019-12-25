@@ -23,8 +23,11 @@ import { State, Getter, Action, Mutation } from 'vuex-class'
   name: 'AppMain'
 })
 export default class extends Vue {
-  @State('appType', { namespace: 'app' }) appType: any
+  @State('appType', { namespace: 'app' }) appType!: string
   @Mutation('TEST', { namespace: 'user' }) TEST: any
+
+  list: Array<string> = []
+
   mounted() {
     this.$nextTick(() => {})
     this.TEST('2656565689')
